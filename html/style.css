@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazir:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+#reputationContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 350px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(100px);
+}
+
+#reputationContainer.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.header h2 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.level-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.level-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFD700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.trust-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 0 10px currentColor;
+}
+
+.progress-container {
+    width: 100%;
+    height: 25px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+}
+
+.level-indicator {
+    height: 3px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+/* Level-specific colors */
+.level-expert .level-name { color: #FFD700 !important; }
+.level-expert .progress-fill { background: linear-gradient(90deg, #FFD700 0%, #FFA500 100%); box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+
+.level-master .level-name { color: #FF6347 !important; }
+.level-master .progress-fill { background: linear-gradient(90deg, #FF6347 0%, #FF4500 100%); box-shadow: 0 0 20px rgba(255, 99, 71, 0.5); }
+
+.level-legendary .level-name { color: #9370DB !important; }
+.level-legendary .progress-fill { background: linear-gradient(90deg, #9370DB 0%, #8A2BE2 100%); box-shadow: 0 0 20px rgba(147, 112, 219, 0.5); }
+
+.level-elite .level-name { color: #00CED1 !important; }
+.level-elite .progress-fill { background: linear-gradient(90deg, #00CED1 0%, #00BFFF 100%); box-shadow: 0 0 20px rgba(0, 206, 209, 0.5); }
+
+.level-veteran .level-name { color: #32CD32 !important; }
+.level-veteran .progress-fill { background: linear-gradient(90deg, #32CD32 0%, #90EE90 100%); box-shadow: 0 0 20px rgba(50, 205, 50, 0.5); }
+
+.level-experienced .level-name { color: #98FB98 !important; }
+.level-experienced .progress-fill { background: linear-gradient(90deg, #98FB98 0%, #90EE90 100%); box-shadow: 0 0 20px rgba(152, 251, 152, 0.5); }
+
+.level-competent .level-name { color: #87CEEB !important; }
+.level-competent .progress-fill { background: linear-gradient(90deg, #87CEEB 0%, #4682B4 100%); box-shadow: 0 0 20px rgba(135, 206, 235, 0.5); }
+
+.level-novice .level-name { color: #D3D3D3 !important; }
+.level-novice .progress-fill { background: linear-gradient(90deg, #D3D3D3 0%, #A9A9A9 100%); box-shadow: 0 0 20px rgba(211, 211, 211, 0.5); }
+
+.level-beginner .level-name { color: #FFA07A !important; }
+.level-beginner .progress-fill { background: linear-gradient(90deg, #FFA07A 0%, #FF6347 100%); box-shadow: 0 0 20px rgba(255, 160, 122, 0.5); }
+
+.level-suspicious .level-name { color: #FF0000 !important; }
+.level-suspicious .progress-fill { background: linear-gradient(90deg, #FF0000 0%, #DC143C 100%); box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
+
+/* Flash animation */
+@keyframes flash {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.5); }
+}
+
+.flash {
+    animation: flash 0.5s ease-in-out;
+}
+
+/* Slide in/out animation */
+@keyframes slideIn {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+}
